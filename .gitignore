@@ -1,0 +1,38 @@
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Environment variables
+.env
+
+# Node modules
+node_modules/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS generated files
+Thumbs.db
+db.db
+Desktop.ini
+.DS_Store
+
+# Local SQLite databases and credentials
+thyroid_dev.db
+admin_security_code.txt
+
+# Local user uploads
+uploads/
