@@ -896,6 +896,39 @@ ${result.doctors?.length ? result.doctors.map(d => `- ${d.name} | ${d.hospital} 
                     </div>
                   </div>
                 </div>
+
+                {/* Display Pending Queries directly on the dashboard */}
+                {adminStats.pending_queries > 0 && (
+                  <div className="bg-amber-900/20 p-5 rounded-2xl border border-amber-500/30 mt-6">
+                    <h4 className="text-sm font-bold text-amber-400 mb-4 flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4" /> Action Required: {adminStats.pending_queries} Pending Queries
+                    </h4>
+                    <div className="space-y-3">
+                      {adminQueries.filter(q => q.status === 'pending').slice(0, 3).map(q => (
+                        <div key={q.id} className="bg-slate-900/50 p-4 rounded-xl border border-amber-500/20 flex flex-col sm:flex-row gap-4 justify-between items-start">
+                          <div className="flex-1">
+                            <span className="text-[10px] text-slate-400 block mb-1">From: {q.user_name} ({q.user_email})</span>
+                            <p className="text-xs text-slate-200 font-semibold">{q.question}</p>
+                          </div>
+                          <button
+                            onClick={() => setActiveAdminTab('queries')}
+                            className="bg-amber-500 hover:bg-amber-400 text-slate-900 px-4 py-2 rounded-lg text-xs font-bold shrink-0 transition-colors"
+                          >
+                            Reply Now
+                          </button>
+                        </div>
+                      ))}
+                      {adminStats.pending_queries > 3 && (
+                        <button
+                          onClick={() => setActiveAdminTab('queries')}
+                          className="w-full text-center text-xs text-amber-400 hover:text-amber-300 font-bold py-2 transition-colors"
+                        >
+                          View all pending queries &rarr;
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
               </motion.div>
             )}
 
